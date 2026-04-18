@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Booking Confirmed | Teatro Monroe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="success.css">
+
+</head>
+<body>
+
+
+<div class="success-container">
+
+  <h1>Booking Confirmed</h1>
+  <p>Your seats have been successfully booked 🎬</p>
+
+  <div class="details">
+    <p>Booked by: <span id="username"></span></p>
+    <p>Seats: <span id="seat-count"></span></p>
+    <p>Total Paid: ₹<span id="total-price"></span></p>
+  </div>
+
+  <button onclick="logout()">Logout</button>
+  <button onclick="goHome()">Back to Home</button>
+
+</div>
+
+<script>
+  document.getElementById("username").innerText = localStorage.getItem("username");
+  document.getElementById("seat-count").innerText = localStorage.getItem("seatCount");
+  document.getElementById("total-price").innerText = localStorage.getItem("totalPrice");
+
+  function goHome() {
+    window.location.href = "index.html";
+  }
+
+  function logout() {
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("username");
+  window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>

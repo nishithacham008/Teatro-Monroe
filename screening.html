@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Screening | Teatro Monroe</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="screening.css">
+</head>
+<body>
+
+  <h1 id="screen-title" class="screen-title"></h1>
+
+  <!-- DATE BAR -->
+  <section class="date-bar" id="date-bar"></section>
+
+  <!-- MOVIES -->
+  <section class="movies" id="movies"></section>
+
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const screen = params.get("screen");
+
+  const title = document.getElementById("screen-title");
+  const moviesDiv = document.getElementById("movies");
+  const dateBar = document.getElementById("date-bar");
+
+  const days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+  const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+  const today = new Date();
+
+  // 🎬 MOVIE DATA (different per day)
+  const data = {
+    dolby: {
+      name: "Dolby Cinema",
+      moviesByDate: [
+        [
+          { title: "Oppenheimer", genre: "Drama", poster: "oppenheimer.jpg", times: ["10:00 AM","2:00 PM","6:00 PM"] },
+          { title: "Dune", genre: "Sci-Fi", poster: "dune.jpg", times: ["11:30 AM","3:30 PM","8:00 PM"] }
+        ],
+        [
+          { title: "Tenet", genre: "Action", poster: "tenet.jpg", times: ["9:00 AM","1:00 PM","5:00 PM"] },
+          { title: "Gravity", genre: "Sci-Fi", poster: "gravity.jpg", times: ["12:00 PM","4:00 PM","9:00 PM"] }
+        ],
+        [
+          { title: "Inception", genre: "Sci-Fi", poster: "inception.jpg", times: ["10:30 AM","2:30 PM","7:00 PM"] }
+        ]
+      ]
+    },
+
+    imax: {
+      name: "IMAX Laser",
+      moviesByDate: [
+        [
+          { title: "Interstellar", genre: "Sci-Fi", poster: "interstellar.jpg", times: ["9:00 AM","1:00 PM","5:00 PM"] },
+          { title: "Avatar", genre: "Fantasy", poster: "avatar.jpg", times: ["12:00 PM","4:00 PM","9:00 PM"] }
+        ],
+        [
+          { title: "The Batman", genre: "Action", poster: "batman.jpg", times: ["10:00 AM","3:00 PM","8:00 PM"] }
+        ],
+        [
+          { title: "Joker", genre: "Drama", poster: "joker.jpg", times: ["11:00 AM","2:00 PM","6:00 PM"] }
+        ]
+      ]
+    },
+
+    luxe: {
+      name: "Monroe LUXE",
+      moviesByDate: [
+        [
+          { title: "La La Land", genre: "Musical", poster: "lalaland.jpg", times: ["11:00 AM","3:00 PM","7:00 PM"] },
+          { title: "The Notebook", genre: "Romance", poster: "notebook.jpg", times: ["1:30 PM","6:30 PM","9:30 PM"] }
+        ],
+        [
+          { title: "Titanic", genre: "Romance", poster: "titanic.jpg", times: ["10:00 AM","2:00 PM","6:00 PM"] }
+        ],
+        [
+          { title: "Before Sunrise", genre: "Romance", poster: "beforesunrise.jpg", times: ["12:00 PM","4:00 PM","8:00 PM"] }
+        ]
+      ]
+    }
+  };
+
+  const selected = data[screen] || data["dolby"];
+  title.innerText = selected.name;
+
+  // 🎬 Function to render movies
+  function loadMovies(dayIndex) {
+  moviesDiv.style.opacity = 0;
+
+  setTimeout(() => {
+    moviesDiv.innerHTML = "";
+
+    const movies = selected.moviesByDate[dayIndex] || selected.moviesByDate[0];
+
+    movies.forEach(movie => {
+      const div = document.createElement("div");
+      div.classList.add("movie");
+
+      div.classList.add("movie-card");
+
+      div.innerHTML = `
+       <img src="${movie.poster}" alt="${movie.title} poster" class="poster">
+
+       <div class="movie-info">
+         <h2>${movie.title}</h2>
+         <p>${movie.genre}</p>
+
+         <div class="timings">
+           ${movie.times.map(t => `<span onclick="goToBooking('${screen}')">${t}</span>`).join("")}
+         </div>
+       </div>
+      `;
+
+      moviesDiv.appendChild(div);
+    });
+
+    moviesDiv.style.opacity = 1;
+
+  }, 200);
+}
+
+  // 📅 Generate dates
+  for (let i = 0; i < 7; i++) {
+    const date = new Date();
+    date.setDate(today.getDate() + i);
+
+    const div = document.createElement("div");
+    div.classList.add("date");
+
+    if (i === 0) div.classList.add("active");
+
+    div.innerHTML = `
+      <p>${days[date.getDay()]}</p>
+      <h2>${date.getDate()}</h2>
+      <span>${months[date.getMonth()]}</span>
+    `;
+
+    div.addEventListener("click", () => {
+      document.querySelectorAll(".date").forEach(d => d.classList.remove("active"));
+      div.classList.add("active");
+
+      loadMovies(i); // 🔥 change movies on click
+    });
+
+    dateBar.appendChild(div);
+  }
+
+  // 🔥 Load today's movies by default
+  loadMovies(0);
+
+function goToBooking(screen) {
+  window.location.href = `bookings.html?screen=${screen}`;
+}
+
+</script>
+
+</body>
+</html>
