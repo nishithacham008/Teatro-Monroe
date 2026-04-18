@@ -1,0 +1,315 @@
+body {
+  background: url('bg.png') no-repeat center center/cover;
+  min-height: 100vh;
+  color: #f8f6f2;
+  font-family: 'Cormorant Garamond', serif;
+  animation: zoomBg 25s ease-in-out infinite alternate;
+}
+
+@keyframes zoomBg {
+  from { background-size: 100%; }
+  to { background-size: 110%; }
+}
+
+#screen-title {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  font-family: 'Cinzel', serif;
+ 
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+.screen-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* Hero container */
+.screen-hero {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* Screen name */
+#screen-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  color: #f8f6f2;
+
+  text-shadow: 0 0 10px rgba(255,255,255,0.6),
+               0 0 20px rgba(255,255,255,0.3);
+}
+
+/* Screen line (like theatre screen edge) */
+.screen-line {
+  width: 60%;
+  height: 6px;
+  margin: 15px auto;
+
+  background: linear-gradient(to right, transparent, #fff, transparent);
+  border-radius: 50%;
+
+  box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+}
+
+h1 {
+  margin: 20px;
+  font-family: 'Cinzel', serif;
+}
+
+/* Seat Count */
+.seat-count {
+  margin-top: 100px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 1px solid #f8f6f2;
+  background: transparent;
+  color: #f8f6f2;
+  cursor: pointer;
+}
+
+/* Layout hidden initially */
+.layout {
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(8px);
+  transition: 0.4s ease;
+}
+
+.layout.active {
+  opacity: 1;
+  pointer-events: auto;
+  filter: blur(0);
+}
+
+/* Seat grid */
+.seats {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+/* Seat base */
+.seat {
+  width: 40px;
+  height: 40px;
+  border: 2px solid;
+  cursor: pointer;
+}
+
+/* Categories */
+.platinum .seat {
+  border-color: #e5e4e2;
+}
+
+.diamond .seat {
+  border-color: #00bfff;
+}
+
+.gold .seat {
+  border-color: gold;
+}
+
+/* Selected */
+.seat.selected {
+  background: #f8f6f2;
+  color: #000;
+  border: 2px solid #00ffcc;
+}
+
+.seat.selected::after {
+  content: "✓";
+  display: block;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Booked */
+.seat.booked {
+  background: #444;
+  cursor: not-allowed;
+}
+
+/* Blur effect when page loads */
+.layout {
+  filter: blur(8px);
+  pointer-events: none;
+  transition: 0.4s ease;
+}
+
+/* Overlay dark layer */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* keeps background visible but cinematic */
+  background: rgba(0,0,0,0.5);
+
+  z-index: 5;
+}
+
+/* Glass panel */
+.glass-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  width: 320px;
+  text-align: center;
+  z-index: 10;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border-radius: 25px; /* more rounded */
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Button */
+.glass-panel button {
+  margin-top: 15px;
+  padding: 8px 20px;
+  border: 1px solid #f8f6f2;
+  background: transparent;
+  color: #f8f6f2;
+  cursor: pointer;
+}
+
+.glass-panel {
+  transition: opacity 0.3s ease;
+}
+
+.glass-panel.hidden {
+  opacity: 0;
+}
+
+.seat-options {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.seat-option {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #f8f6f2;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover */
+.seat-option:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Selected */
+.seat-option.active {
+  background: #f8f6f2;
+  color: #000;
+}
+
+#continue-btn {
+  margin-top: 10px;
+  padding: 10px 25px;
+  border: 1px solid #f8f6f2;
+  background: transparent;
+  color: #f8f6f2;
+  cursor: pointer;
+}
+
+.summary {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 250px;
+  padding: 20px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 15px;
+
+  color: #f8f6f2;
+}
+
+.summary h3 {
+  margin-bottom: 10px;
+}
+
+.summary button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #f8f6f2;
+  background: transparent;
+  color: #f8f6f2;
+  cursor: pointer;
+}
+
+button, .seat, .seat-option, .card {
+  cursor: pointer;
+}
+
+button:focus, input:focus {
+  outline: 2px solid #00ffcc;
+}
+
+
+@media (max-width: 768px) {
+
+  .screens {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .movie-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .seats {
+    grid-template-columns: repeat(5, 35px);
+  }
+
+  .login-container,
+  .payment-container,
+  .success-container {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .summary {
+    width: 90%;
+    right: 5%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
