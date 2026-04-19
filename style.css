@@ -9,7 +9,6 @@ body, html {
   font-family: 'Cormorant Garamond', serif;
 }
 
-/* Hero Section */
 .hero {
   height: 100vh;
   background: url('Capstone.png') no-repeat center center/cover;
@@ -19,14 +18,12 @@ body, html {
   text-align: center;
 }
 
-/* Content */
 .content {
-  color: #f8f6f2; /* pearl white */
+  color: #f8f6f2; 
   max-width: 900px;
   padding: 20px;
 }
 
-/* Title */
 h1 {
   font-family: 'Cinzel', serif;
   font-size: 4rem;
@@ -34,7 +31,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Tagline */
 .tagline {
   font-size: 1.1rem;
   letter-spacing: 1.5px;
@@ -42,7 +38,6 @@ h1 {
   line-height: 1.7;
 }
 
-/* Button */
 .btn {
   padding: 14px 32px;
   border: 1px solid #f8f6f2;
