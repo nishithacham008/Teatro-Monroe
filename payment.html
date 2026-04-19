@@ -45,7 +45,6 @@ function pay(e) {
   const expiry = document.getElementById("expiry").value.trim();
   const cvv = document.getElementById("cvv").value.trim();
 
-  // 🔴 Card Number (16 digits)
   document.getElementById("card-number").addEventListener("input", function(e) {
   this.value = this.value.replace(/\D/g, '').slice(0,16);
 });
@@ -54,13 +53,11 @@ function pay(e) {
     return;
   }
 
-  // 🔴 Name (letters only)
   if (!/^[a-zA-Z ]+$/.test(cardName)) {
     alert("Invalid name (letters only)");
     return;
   }
 
-  // 🔴 Expiry (MM/YY)
   document.getElementById("expiry").addEventListener("input", function(e) {
   let value = this.value.replace(/\D/g, '').slice(0,4);
 
@@ -75,13 +72,11 @@ function pay(e) {
     return;
   }
 
-  // 🔴 CVV (3 digits)
   if (!/^\d{3}$/.test(cvv)) {
     alert("Invalid CVV (3 digits)");
     return;
   }
 
-  // ✅ Success
   alert("Processing Payment...");
 
   setTimeout(() => {
