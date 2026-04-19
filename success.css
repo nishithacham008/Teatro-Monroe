@@ -32,13 +32,12 @@ body::before {
   to { background-size: 110%; }
 }
 
-/* Container */
 .success-container {
   text-align: center;
   padding: 50px;
   animation: fadeIn 1s ease;
 
-  background: rgba(0, 0, 0, 0.6); /* darker glass instead */
+  background: rgba(0, 0, 0, 0.6); 
   backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.2);
@@ -46,18 +45,15 @@ body::before {
   color: #ffffff;
 }
 
-/* Title */
 .success-container h1 {
   font-family: 'Cinzel', serif;
   margin-bottom: 10px;
 }
 
-/* Details */
 .details {
   margin: 20px 0;
 }
 
-/* Button */
 button {
   padding: 10px 25px;
   border: 1px solid #f8f6f2;
