@@ -15,7 +15,6 @@
   <h1>Teatro Monroe</h1>
   <p class="tagline">Continue your cinematic journey</p>
 
-  <!-- TOGGLE -->
   <div class="toggle">
     <span id="login-tab" class="active" onclick="showLogin()">Login</span>
     <span id="signup-tab" onclick="showSignup()">Sign Up</span>
@@ -60,14 +59,12 @@ function showSignup() {
   document.getElementById("login-tab").classList.remove("active");
 }
 
-/* LOGIN */
 function login(e) {
   e.preventDefault();
 
   const username = document.getElementById("login-username").value.trim();
   const password = document.getElementById("login-password").value.trim();
 
-  // 🔴 Validation
   if (username.length < 3) {
     showMessage("Username must be at least 3 characters", true);
     return;
@@ -99,14 +96,12 @@ function login(e) {
   redirectUser();
 }
 
-/* SIGNUP */
 function signup(e) {
   e.preventDefault();
 
   const username = document.getElementById("signup-username").value.trim();
   const password = document.getElementById("signup-password").value.trim();
 
-  // 🔴 Validation
   if (username.length < 3) {
     showMessage("Username must be at least 3 characters", true);
     return;
@@ -133,7 +128,6 @@ function signup(e) {
   showLogin();
 }
 
-/* REDIRECT */
 function redirectUser() {
   const redirectPage = localStorage.getItem("redirectAfterLogin");
 
@@ -145,7 +139,6 @@ function redirectUser() {
   }
 }
 
-/* MESSAGE */
 function showMessage(msg, isError) {
   const message = document.getElementById("message");
   message.innerText = msg;
