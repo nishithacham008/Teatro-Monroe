@@ -11,10 +11,8 @@
 
   <h1 id="screen-title" class="screen-title"></h1>
 
-  <!-- DATE BAR -->
   <section class="date-bar" id="date-bar"></section>
 
-  <!-- MOVIES -->
   <section class="movies" id="movies"></section>
 
   <script>
@@ -30,7 +28,6 @@
 
   const today = new Date();
 
-  // 🎬 MOVIE DATA (different per day)
   const data = {
     dolby: {
       name: "Dolby Cinema",
@@ -85,7 +82,6 @@
   const selected = data[screen] || data["dolby"];
   title.innerText = selected.name;
 
-  // 🎬 Function to render movies
   function loadMovies(dayIndex) {
   moviesDiv.style.opacity = 0;
 
@@ -121,7 +117,6 @@
   }, 200);
 }
 
-  // 📅 Generate dates
   for (let i = 0; i < 7; i++) {
     const date = new Date();
     date.setDate(today.getDate() + i);
@@ -141,13 +136,12 @@
       document.querySelectorAll(".date").forEach(d => d.classList.remove("active"));
       div.classList.add("active");
 
-      loadMovies(i); // 🔥 change movies on click
+      loadMovies(i); 
     });
 
     dateBar.appendChild(div);
   }
 
-  // 🔥 Load today's movies by default
   loadMovies(0);
 
 function goToBooking(screen) {
